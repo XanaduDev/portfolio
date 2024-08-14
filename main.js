@@ -18,7 +18,8 @@ function init() {
 
 // Create Scene
 function createScene() {
-    return new THREE.Scene();
+    const scene = new THREE.Scene();
+    return scene;
 }
 
 // Create Camera
@@ -49,22 +50,22 @@ function createLight() {
 function orbitControls(camera, renderer) {
     const controls = new OrbitControls(camera, renderer.domElement);
     controls.enableDamping = true;
-    controls.dampingFactor = 0.25;
+    controls.dampingFactor = 0.1;
+    controls.enableZoom= false; 
     return controls;
 }
 
 // Create Cubes
 function createCubes(scene) {
     const colors = [
-        0x4285F4, 0x34A853, 0xFBBC05, 0xEA4335, 0xFF5733,
-        0xC70039, 0x900C3F, 0x581845, 0xDAF7A6, 0xFFC300
+        0x4285F4, 0x4285F4, 0x4285F4, 0x4285F4, 0x4285F4, 0x4285F4, 0x4285F4, 0x4285F4, 0x4285F4, 0x4285F4, 
     ];
 
     const cubes = [];
 
     function createCube(size, color) {
         const geometry = new THREE.BoxGeometry(size, size, size);
-        const material = new THREE.MeshStandardMaterial({ color: color, metalness: 0.9, roughness: 0.1 });
+        const material = new THREE.MeshStandardMaterial({ color: color, metalness: 0.95, roughness: 0.1 });
         const cube = new THREE.Mesh(geometry, material);
         scene.add(cube);
         return cube;
@@ -102,3 +103,4 @@ function handleResize(renderer, camera) {
 }
 
 init();
+
