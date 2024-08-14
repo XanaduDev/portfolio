@@ -1,0 +1,7 @@
+body {
+    margin: 0;
+    overflow: hidden; /* Ensure no scrollbars appear */
+}
+canvas {
+    display: block; /* Ensure the canvas fills the screen */
+}
