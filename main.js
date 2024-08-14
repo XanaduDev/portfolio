@@ -5,10 +5,10 @@ function init() {
     const scene = createScene();
     const camera = createCamera();
     const renderer = createRenderer();
-    const light = createLight();
+    const lights = createLight();
     const controls = orbitControls(camera, renderer);
 
-    scene.add(light);
+    scene.add(lights);
 
     const cubes = createCubes(scene);
 
@@ -39,11 +39,22 @@ function createRenderer() {
     return renderer;
 }
 
-// Create Light
+// Create Lights
 function createLight() {
-    const light = new THREE.DirectionalLight(0xffffff, 5);
-    light.position.set(5, 5, 5);
-    return light;
+    const directionalLight = new THREE.DirectionalLight(0xffffff, 5);
+    directionalLight.position.set(3, 7, 7);
+    
+    const ambientLight = new THREE.AmbientLight(0x404040, 1); // Soft white light
+
+    // const pointLight = new THREE.PointLight(0xff0000, 1, 50);
+    // pointLight.position.set(10, 10, 10);
+
+    const lights = new THREE.Group();
+    lights.add(directionalLight);
+    lights.add(ambientLight);
+    // lights.add(pointLight);
+
+    return lights;
 }
 
 // Orbit Controls Functionalities
@@ -65,7 +76,7 @@ function createCubes(scene) {
 
     function createCube(size, color) {
         const geometry = new THREE.BoxGeometry(size, size, size);
-        const material = new THREE.MeshStandardMaterial({ color: color, metalness: 0.95, roughness: 0.1 });
+        const material = new THREE.MeshStandardMaterial({ color: color, metalness: 0.9, roughness: 0.2 });
         const cube = new THREE.Mesh(geometry, material);
         scene.add(cube);
         return cube;
